@@ -26,6 +26,22 @@ TEST(LinkedList, oneNodeGet)
     EXPECT_EQ(2, ll.get(0));
 }
 
+TEST(LinkedList, twoNodesSize)
+{
+    LinkedList ll;
+    ll.insert(2);
+    ll.insert(3);
+    EXPECT_EQ(2, ll.size());
+}
+
+TEST(LinkedList, twoNodesGetSecond)
+{
+    LinkedList ll;
+    ll.insert(2);
+    ll.insert(3);
+    EXPECT_EQ(3, ll.get(1));
+}
+
 int main(int argc, char **argv) {
   testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();

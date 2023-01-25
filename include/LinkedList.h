@@ -5,12 +5,13 @@ struct Node
     Node* next_ = nullptr;
     Node* prev_ = nullptr;
     int value_;
-    Node(int value) : value_(value) {};
+    Node(int value) : value_(value), next_{nullptr}, prev_{nullptr} {};
 };
 class LinkedList
 {
     public:
         LinkedList() = default;
+        ~LinkedList();
         //LinkedList(int elem, Node* prev);
 
         void insert(const int value);

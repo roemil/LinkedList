@@ -1,6 +1,18 @@
 #include "LinkedList.h"
 #include <stdexcept>
 
+LinkedList::~LinkedList()
+{
+    Node* head = first;
+    while(head && head->next_)
+    {
+        Node* tmp = head;
+        head = head->next_;
+        delete tmp;
+    }
+    first = nullptr;
+}
+
 void LinkedList::insert(int value)
 {
     Node* node = new Node(value);
@@ -20,6 +32,7 @@ void LinkedList::insert(int value)
     }
 
     head->next_ = node;
+    ++size_;
 }
 
 int LinkedList::get(const int index) const
