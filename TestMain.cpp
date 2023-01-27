@@ -1,5 +1,6 @@
 #include "gtest/gtest.h"
 #include "LinkedList.h"
+#include <stdexcept>
 
 TEST(LinkedList, test)
 {
@@ -26,20 +27,47 @@ TEST(LinkedList, oneNodeGet)
     EXPECT_EQ(2, ll.get(0));
 }
 
-TEST(LinkedList, twoNodesSize)
+TEST(LinkedList, oneNodeGetException)
 {
     LinkedList ll;
     ll.insert(2);
-    ll.insert(3);
-    EXPECT_EQ(2, ll.size());
+    EXPECT_THROW(ll.get(ll.size()+1), std::out_of_range);
 }
 
-TEST(LinkedList, twoNodesGetSecond)
+TEST(LinkedList, threeNodesSize)
 {
     LinkedList ll;
     ll.insert(2);
     ll.insert(3);
+    ll.insert(4);
+    EXPECT_EQ(3, ll.size());
+}
+
+TEST(LinkedList, threeNodesGetSecond)
+{
+    LinkedList ll;
+    ll.insert(2);
+    ll.insert(3);
+    ll.insert(4);
     EXPECT_EQ(3, ll.get(1));
+}
+
+TEST(LinkedList, threeNodesRemoveMiddle)
+{
+    LinkedList ll;
+    ll.insert(2);
+    ll.insert(3);
+    ll.insert(4);
+
+    ll.remove(1);
+    EXPECT_EQ(4, ll.get(1));
+}
+
+TEST(LinkedList, oneNodeRemoveException)
+{
+    LinkedList ll;
+    ll.insert(2);
+    EXPECT_THROW(ll.get(ll.size()+1), std::out_of_range);
 }
 
 int main(int argc, char **argv) {

@@ -51,5 +51,25 @@ int LinkedList::get(const int index) const
     {
         throw std::out_of_range("Index not found");
     }
+}
 
+void LinkedList::remove(const int index)
+{
+    Node* head = first;
+    int localInd = 0;
+    Node* prev;
+    while(localInd != index && head->next_)
+    {
+        prev = head;
+        head=head->next_;
+        ++localInd;
+    }
+    if(localInd == index)
+    {
+        prev->next_ = head->next_;
+        delete head;
+    }else
+    {
+        throw std::out_of_range("Index not found");
+    }
 }
