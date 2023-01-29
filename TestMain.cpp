@@ -13,11 +13,6 @@ LinkedList createLinkedList(const int size)
     return ll;
 }
 
-TEST(LinkedList, test)
-{
-    EXPECT_TRUE(true);
-}
-
 TEST(LinkedList, ctor)
 {
     LinkedList ll;
