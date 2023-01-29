@@ -39,6 +39,14 @@ void LinkedList::insert(int value)
 
 int LinkedList::get(const int index) const
 {
+    if(index == 0)
+    {
+        return first->value_;
+    }
+    if(index == size_)
+    {
+        return last->value_;
+    }
     Node* head = first;
     int localInd = 0;
     while(localInd != index && head->next_)
