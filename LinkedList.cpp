@@ -57,6 +57,10 @@ void LinkedList::insert(int value)
 
 int LinkedList::get(const int index) const
 {
+    if(index > size_ || index < 0)
+    {
+        throw std::out_of_range("Index not found");
+    }
     if(index == 0)
     {
         return first->value_;
@@ -72,13 +76,8 @@ int LinkedList::get(const int index) const
         current=current->next_;
         ++localInd;
     }
-    if(localInd == index)
-    {
-        return current->value_;
-    }else
-    {
-        throw std::out_of_range("Index not found");
-    }
+    assert(localInd == index);
+    return current->value_;
 }
 
 void LinkedList::remove(const int index)
