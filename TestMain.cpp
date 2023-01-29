@@ -7,7 +7,7 @@ LinkedList createLinkedList(const int size)
     LinkedList ll;
     for(int i = 0; i < size; ++i)
     {
-        ll.insert(i);
+        ll.append(i);
     }
     EXPECT_EQ(size, ll.size());
     return ll;
@@ -36,7 +36,7 @@ TEST(LinkedList, oneNodeSize)
 TEST(LinkedList, oneNodeGet)
 {
     LinkedList ll;
-    ll.insert(2);
+    ll.append(2);
     EXPECT_EQ(2, ll.get(0));
 }
 
@@ -80,7 +80,7 @@ TEST(LinkedList, reverseListFourNodes)
 TEST(LinkedList, oneNodeRemoveException)
 {
     LinkedList ll;
-    ll.insert(2);
+    ll.append(2);
     EXPECT_THROW(ll.get(ll.size()+1), std::out_of_range);
 }
 

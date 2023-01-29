@@ -35,7 +35,7 @@ void LinkedList::clear()
     size_ = 0;
 }
 
-void LinkedList::insert(int value)
+void LinkedList::append(int value)
 {
     if(size_ == 0)
     {
@@ -44,14 +44,11 @@ void LinkedList::insert(int value)
     }
 
     Node* node = new Node(value);
-    Node* current = first;
-    while(current->next_)
-    {
-        current = current->next_;
-    }
-    node->prev_ = current;
-    current->next_ = node;
+
+    node->prev_ = last;
+    last->next_ = node;
     last = node;
+
     ++size_;
 }
 
