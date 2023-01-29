@@ -9,6 +9,7 @@ LinkedList createLinkedList(const int size)
     {
         ll.insert(i);
     }
+    EXPECT_EQ(size, ll.size());
     return ll;
 }
 
@@ -78,6 +79,15 @@ TEST(LinkedList, oneNodeRemoveException)
     LinkedList ll;
     ll.insert(2);
     EXPECT_THROW(ll.get(ll.size()+1), std::out_of_range);
+}
+
+TEST(LinkedList, clear)
+{
+    LinkedList ll = createLinkedList(10);
+
+    ll.clear();
+
+    EXPECT_EQ(0, ll.size());
 }
 
 int main(int argc, char **argv) {

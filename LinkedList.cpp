@@ -4,14 +4,20 @@
 
 LinkedList::~LinkedList()
 {
-    Node* head = first;
+    clear();
+}
+
+void LinkedList::clear()
+{
+       Node* head = first;
     while(head && head->next_)
     {
         Node* tmp = head;
         head = head->next_;
         delete tmp;
     }
-    first = nullptr;
+    first = last = nullptr;
+    size_ = 0;
 }
 
 void LinkedList::insert(int value)
