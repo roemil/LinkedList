@@ -55,12 +55,19 @@ void LinkedList::insert(int value)
     ++size_;
 }
 
+namespace{
+    void isIndexInBounds(const int index, const int listSize)
+    {
+        if(index > listSize || index < 0)
+        {
+            throw std::out_of_range("Index not found");
+        }
+    }
+}
+
 int LinkedList::get(const int index) const
 {
-    if(index > size_ || index < 0)
-    {
-        throw std::out_of_range("Index not found");
-    }
+    isIndexInBounds(index, size_);
     if(index == 0)
     {
         return first->value_;
@@ -82,6 +89,7 @@ int LinkedList::get(const int index) const
 
 void LinkedList::remove(const int index)
 {
+    isIndexInBounds(index, size_);
     Node* current = first;
     int localInd = 0;
     Node* prev;
@@ -91,14 +99,9 @@ void LinkedList::remove(const int index)
         current=current->next_;
         ++localInd;
     }
-    if(localInd == index)
-    {
-        prev->next_ = current->next_;
-        delete current;
-    }else
-    {
-        throw std::out_of_range("Index not found");
-    }
+    assert(localInd == index);
+    prev->next_ = current->next_;
+    delete current;
 }
 
 void LinkedList::reverse()
