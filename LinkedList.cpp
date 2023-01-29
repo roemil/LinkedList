@@ -65,7 +65,7 @@ namespace{
     }
 }
 
-int LinkedList::get(const int index) const
+int LinkedList::get(int index) const
 {
     isIndexInBounds(index, size_);
     if(index == 0)
@@ -77,29 +77,25 @@ int LinkedList::get(const int index) const
         return last->value_;
     }
     Node* current = first;
-    int localInd = 0;
-    while(localInd != index && current->next_)
+    while(index && current->next_)
     {
         current=current->next_;
-        ++localInd;
+        --index;
     }
-    assert(localInd == index);
     return current->value_;
 }
 
-void LinkedList::remove(const int index)
+void LinkedList::remove(int index)
 {
     isIndexInBounds(index, size_);
     Node* current = first;
-    int localInd = 0;
     Node* prev;
-    while(localInd != index && current->next_)
+    while(index && current->next_)
     {
         prev = current;
         current=current->next_;
-        ++localInd;
+        --index;
     }
-    assert(localInd == index);
     prev->next_ = current->next_;
     delete current;
 }

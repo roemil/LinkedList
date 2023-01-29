@@ -16,9 +16,9 @@ class LinkedList
         //LinkedList(int elem, Node* prev);
 
         void insert(const int value);
-        void remove(const int index);
+        void remove(int index);
         void reverse();
-        int get(const int index) const;
+        int get(int index) const;
         void clear();
         int size() const {return size_;};
 
