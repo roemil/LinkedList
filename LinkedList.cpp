@@ -2,6 +2,21 @@
 #include <stdexcept>
 #include <iostream>
 
+LinkedList::LinkedList(const int value)
+{
+    createFirstNode(value);
+}
+
+void LinkedList::createFirstNode(const int value)
+{
+    Node* node = new Node(value);
+    assert(size_ == 0);
+    first = last = node;
+    first->next_ = nullptr;
+    first->prev_ = nullptr;
+    ++size_;
+}
+
 LinkedList::~LinkedList()
 {
     clear();
@@ -22,16 +37,13 @@ void LinkedList::clear()
 
 void LinkedList::insert(int value)
 {
-    Node* node = new Node(value);
     if(size_ == 0)
     {
-        first = last = node;
-        first->next_ = nullptr;
-        first->prev_ = nullptr;
-        ++size_;
+        createFirstNode(value);
         return;
     }
 
+    Node* node = new Node(value);
     Node* current = first;
     while(current->next_)
     {

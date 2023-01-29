@@ -13,10 +13,18 @@ LinkedList createLinkedList(const int size)
     return ll;
 }
 
-TEST(LinkedList, ctor)
+TEST(LinkedList, defaultCtor)
 {
     LinkedList ll;
     EXPECT_EQ(0, ll.size());
+}
+
+TEST(LinkedList, ctor)
+{
+    LinkedList ll{5};
+
+    EXPECT_EQ(1, ll.size());
+    EXPECT_EQ(5, ll.get(0));
 }
 
 TEST(LinkedList, oneNodeSize)

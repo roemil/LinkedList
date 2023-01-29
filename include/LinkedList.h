@@ -11,6 +11,7 @@ class LinkedList
 {
     public:
         LinkedList() = default;
+        LinkedList(const int value);
         ~LinkedList();
         //LinkedList(int elem, Node* prev);
 
@@ -25,5 +26,7 @@ class LinkedList
         Node* first = nullptr;
         Node* last = nullptr;
         int size_{0};
+
+        void createFirstNode(const int value);
     
 };
