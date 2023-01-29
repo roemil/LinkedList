@@ -64,7 +64,7 @@ void LinkedList::append(const int value)
 
 void LinkedList::insert(int index, const int value)
 {
-    isIndexInBounds(index, size_+1); // +1 since we might want to insert at the end of the list
+    isIndexInBounds(index, size_); // +1 since we might want to insert at the end of the list
     Node* node = new Node(value);
     if(index == 0)
     {

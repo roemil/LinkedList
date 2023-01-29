@@ -121,6 +121,15 @@ TEST(LinkedList, insertAtEnd)
     EXPECT_EQ(50, ll.get(size));
 }
 
+TEST(LinkedList, insertException)
+{
+    const int size = 4;
+    LinkedList ll = createLinkedList(size);
+
+    EXPECT_THROW(ll.insert(size+1, 50), std::out_of_range);
+}
+
+
 int main(int argc, char **argv) {
   testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
