@@ -63,6 +63,19 @@ TEST(LinkedList, threeNodesRemoveMiddle)
     EXPECT_EQ(4, ll.get(1));
 }
 
+TEST(LinkedList, reverseListFourNodes)
+{
+    LinkedList ll;
+    ll.insert(1);
+    ll.insert(2);
+    ll.insert(3);
+    ll.insert(4);
+
+    ll.reverse();
+
+    EXPECT_EQ(4, ll.get(0));
+}
+
 TEST(LinkedList, oneNodeRemoveException)
 {
     LinkedList ll;

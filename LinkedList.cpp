@@ -1,5 +1,6 @@
 #include "LinkedList.h"
 #include <stdexcept>
+#include <iostream>
 
 LinkedList::~LinkedList()
 {
@@ -18,7 +19,7 @@ void LinkedList::insert(int value)
     Node* node = new Node(value);
     if(size_ == 0)
     {
-        first = node;
+        first = last = node;
         first->next_ = nullptr;
         first->prev_ = nullptr;
         ++size_;
@@ -32,6 +33,7 @@ void LinkedList::insert(int value)
     }
 
     head->next_ = node;
+    last = node;
     ++size_;
 }
 
@@ -72,4 +74,20 @@ void LinkedList::remove(const int index)
     {
         throw std::out_of_range("Index not found");
     }
+}
+
+void LinkedList::reverse()
+{
+    Node* head = first;
+    Node* prev = nullptr;
+    while(head)
+    {
+        Node* tmpNext = head->next_;
+        head->next_ = prev;
+        prev = head;
+        head = tmpNext;
+    }
+    Node* tmpFirst = first;
+    first = last;
+    last = tmpFirst;
 }

@@ -16,6 +16,7 @@ class LinkedList
 
         void insert(const int value);
         void remove(const int index);
+        void reverse();
         int get(const int index) const;
         void clear();
         int size() const {return size_;};
