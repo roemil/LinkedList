@@ -26,13 +26,13 @@ void LinkedList::insert(int value)
         return;
     }
 
-    Node* head = first;
-    while(head->next_)
+    Node* current = first;
+    while(current->next_)
     {
-        head = head->next_;
+        current = current->next_;
     }
-
-    head->next_ = node;
+    node->prev_ = current;
+    current->next_ = node;
     last = node;
     ++size_;
 }
@@ -47,16 +47,16 @@ int LinkedList::get(const int index) const
     {
         return last->value_;
     }
-    Node* head = first;
+    Node* current = first;
     int localInd = 0;
-    while(localInd != index && head->next_)
+    while(localInd != index && current->next_)
     {
-        head=head->next_;
+        current=current->next_;
         ++localInd;
     }
     if(localInd == index)
     {
-        return head->value_;
+        return current->value_;
     }else
     {
         throw std::out_of_range("Index not found");
@@ -65,19 +65,19 @@ int LinkedList::get(const int index) const
 
 void LinkedList::remove(const int index)
 {
-    Node* head = first;
+    Node* current = first;
     int localInd = 0;
     Node* prev;
-    while(localInd != index && head->next_)
+    while(localInd != index && current->next_)
     {
-        prev = head;
-        head=head->next_;
+        prev = current;
+        current=current->next_;
         ++localInd;
     }
     if(localInd == index)
     {
-        prev->next_ = head->next_;
-        delete head;
+        prev->next_ = current->next_;
+        delete current;
     }else
     {
         throw std::out_of_range("Index not found");
