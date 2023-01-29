@@ -93,6 +93,34 @@ TEST(LinkedList, clear)
     EXPECT_EQ(0, ll.size());
 }
 
+TEST(LinkedList, insertAtFirstIndex)
+{
+    LinkedList ll = createLinkedList(10);
+
+    ll.insert(0, 50);
+
+    EXPECT_EQ(50, ll.get(0));
+}
+
+TEST(LinkedList, insert)
+{
+    LinkedList ll = createLinkedList(4);
+
+    ll.insert(2, 50);
+
+    EXPECT_EQ(50, ll.get(3));
+}
+
+TEST(LinkedList, insertAtEnd)
+{
+    const int size = 4;
+    LinkedList ll = createLinkedList(size);
+
+    ll.insert(size, 50);
+
+    EXPECT_EQ(50, ll.get(size));
+}
+
 int main(int argc, char **argv) {
   testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();

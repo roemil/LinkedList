@@ -2,6 +2,16 @@
 #include <stdexcept>
 #include <iostream>
 
+namespace{
+    void isIndexInBounds(const int index, const int listSize)
+    {
+        if(index > listSize || index < 0)
+        {
+            throw std::out_of_range("Index not found");
+        }
+    }
+}
+
 LinkedList::LinkedList(const int value)
 {
     createFirstNode(value);
@@ -24,7 +34,7 @@ LinkedList::~LinkedList()
 
 void LinkedList::clear()
 {
-       Node* head = first;
+    Node* head = first;
     while(head && head->next_)
     {
         Node* tmp = head;
@@ -35,7 +45,7 @@ void LinkedList::clear()
     size_ = 0;
 }
 
-void LinkedList::append(int value)
+void LinkedList::append(const int value)
 {
     if(size_ == 0)
     {
@@ -52,14 +62,36 @@ void LinkedList::append(int value)
     ++size_;
 }
 
-namespace{
-    void isIndexInBounds(const int index, const int listSize)
+void LinkedList::insert(int index, const int value)
+{
+    isIndexInBounds(index, size_+1); // +1 since we might want to insert at the end of the list
+    Node* node = new Node(value);
+    if(index == 0)
     {
-        if(index > listSize || index < 0)
-        {
-            throw std::out_of_range("Index not found");
-        }
+        node->next_ = first;
+        first->prev_ = node;
+        first = node;
+        return;
     }
+    if(index == size_)
+    {
+        append(value);
+        return;
+    }
+
+    Node* current = first;
+    while(index && current)
+    {
+        --index;
+        current = current->next_;
+    }
+    assert(index == 0);
+    Node* next = current->next_;
+    Node* prev = current;
+    node->next_ = next;
+    node->prev_ = current;
+    current->next_->prev_ = node;
+    current->next_ = node;
 }
 
 int LinkedList::get(int index) const
